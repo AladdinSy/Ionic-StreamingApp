@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { forkJoin } from 'rxjs';
-import { ThemoviedbService } from '../projects/api/service/themoviedb.service';
+import { MoviesDbService } from '../project/services/api/moviesdb.service';
 
 @Component({
   selector: 'app-tab3',
@@ -14,7 +14,7 @@ export class Tab3Page {
   searchCardContainer: any = [];
   loadingCurrentEventData: any;
 
-  constructor(private service: ThemoviedbService) {
+  constructor(private service: MoviesDbService) {
     this.searchValue = '';
     this.selectedValue = 'movie';
   }

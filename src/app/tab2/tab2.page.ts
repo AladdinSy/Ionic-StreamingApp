@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
-import { ThemoviedbService } from '../projects/api/service/themoviedb.service';
+import { MoviesDbService } from '../project/services/api/moviesdb.service';
 
 @Component({
   selector: 'app-tab2',
@@ -17,7 +17,7 @@ export class Tab2Page implements OnInit {
   filteredGenreId: string;
   loadingCurrentEventData: any;
 
-  constructor(private service: ThemoviedbService) {}
+  constructor(private service: MoviesDbService) {}
 
   ngOnInit(): void {
     this.initializeSliderContainer();

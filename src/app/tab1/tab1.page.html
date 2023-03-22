@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" #header>
   <ion-toolbar>
     <ion-buttons class="ion-margin-start" slot="start">
       <ion-icon style="font-size: 48px" name="play-circle"></ion-icon>
@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="header">
   <ion-list>
     <app-slider
       [sliderInputValue]="sliderContainer"

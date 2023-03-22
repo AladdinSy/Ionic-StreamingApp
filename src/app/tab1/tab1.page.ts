@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
-import { ThemoviedbService } from '../projects/api/service/themoviedb.service';
+import { MoviesDbService } from '../project/services/api/moviesdb.service';
 
 @Component({
   selector: 'app-tab1',
@@ -17,7 +17,7 @@ export class Tab1Page implements OnInit {
   filteredGenreId: string;
   loadingCurrentEventData: any;
 
-  constructor(private service: ThemoviedbService) {}
+  constructor(private service: MoviesDbService) {}
 
   ngOnInit(): void {
     this.initializeSliderContainer();
@@ -31,9 +31,9 @@ export class Tab1Page implements OnInit {
         this.sliderContainer.push({
           id: element.id,
           title: element.title,
-          image: 'http://image.tmdb.org/t/p/original' + element.backdrop_path,
+          image: 'https://image.tmdb.org/t/p/original' + element.backdrop_path,
           posterPath:
-            'http://image.tmdb.org/t/p/original' + element.poster_path,
+            'https://image.tmdb.org/t/p/original' + element.poster_path,
           modelItem: element,
         });
       });
@@ -64,7 +64,7 @@ export class Tab1Page implements OnInit {
             title: element.title,
             description: element.overview,
             image: element.poster_path
-              ? 'http://image.tmdb.org/t/p/original' + element.poster_path
+              ? 'https://image.tmdb.org/t/p/original' + element.poster_path
               : '/assets/poster-holder.jpg',
             voterRating: element.vote_average,
             modelItem: element,

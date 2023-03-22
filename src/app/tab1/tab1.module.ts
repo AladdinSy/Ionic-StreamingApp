@@ -6,7 +6,8 @@ import { Tab1Page } from './tab1.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
-import { ProjectComponentModule } from '../projects/component/project-component/project-component.module';
+import { ProjectComponentModule } from '../project/components/project-component.module';
+import { SharedDirectivesModule } from '../project/directives/shared-directives.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ProjectComponentModule } from '../projects/component/project-component/
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
     ProjectComponentModule,
+    SharedDirectivesModule,
   ],
   declarations: [Tab1Page],
 })

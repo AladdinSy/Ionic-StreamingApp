@@ -7,30 +7,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-header class="ion-align-items-center">
+<ion-header>
   <ion-toolbar>
-    <ion-searchbar
-      mode="md"
-      placeholder="Enter keyword to search..."
-      [(ngModel)]="searchValue"
-      (ionChange)="filterList()"
-    ></ion-searchbar>
-
-    <ion-item>
-      <ion-label>Search Type</ion-label>
-      <ion-select
-        placeholder="Select Filter Type"
-        [(ngModel)]="selectedValue"
-        (ionChange)="selectionChanged()"
-      >
-        <ion-select-option value="movie">Movies</ion-select-option>
-        <ion-select-option value="tv">TV Shows</ion-select-option>
-      </ion-select>
-    </ion-item>
+    <ion-row class="ion-padding-top">
+      <ion-col size="8">
+        <ion-searchbar
+          mode="ios"
+          placeholder="Enter keyword"
+          [(ngModel)]="searchValue"
+          (ionChange)="filterList()"
+        >
+        </ion-searchbar>
+      </ion-col>
+      <ion-col size="4">
+        <ion-select
+          placeholder="Select Filter Type"
+          [(ngModel)]="selectedValue"
+          (ionChange)="selectionChanged()"
+        >
+          <ion-select-option value="movie">Movies</ion-select-option>
+          <ion-select-option value="tv">TV Shows</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content scrollEvents="true">
   <ion-list *ngIf="searchCardContainer.length > 0">
     <ion-grid fixed="true">
       <ion-row>
