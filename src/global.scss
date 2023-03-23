@@ -39,4 +39,15 @@ ion-modal{
     --height: 100%;
 }
 
+.toast-custom-class {
+  --height: 7vh;
+  --width: 20vh;
+  --color: var(--ion-color-dark);
+  --border-radius:20px;
+  --border-style:solid;
+  --border-width:2px;
+  --background: var(--ion-color-light);
+}
+
+
 

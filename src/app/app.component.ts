@@ -71,6 +71,7 @@ export class AppComponent {
       message: 'Thank You',
       duration: 1000,
       position: 'bottom',
+      cssClass: 'toast-custom-class',
     });
 
     await toast.present();
