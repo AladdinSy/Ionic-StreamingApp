@@ -1,6 +1,11 @@
 import { Component, Optional, ViewChild } from '@angular/core';
 import { App } from '@capacitor/app';
-import { AlertController, IonRouterOutlet, Platform } from '@ionic/angular';
+import {
+  AlertController,
+  IonRouterOutlet,
+  Platform,
+  ToastController,
+} from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +18,8 @@ export class AppComponent {
 
   constructor(
     private platform: Platform,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private toastController: ToastController
   ) {
     this.backButtonEvent();
     //
@@ -44,7 +50,7 @@ export class AppComponent {
           text: 'Stay',
           role: 'cancel',
           handler: () => {
-            console.log('Application exit prevented!');
+            this.presentToast();
             this.alertPresented = false;
           },
         },
@@ -58,5 +64,15 @@ export class AppComponent {
       ],
     });
     await alert.present();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Thank You',
+      duration: 1000,
+      position: 'bottom',
+    });
+
+    await toast.present();
   }
 }
