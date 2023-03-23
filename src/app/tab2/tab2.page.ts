@@ -94,15 +94,18 @@ export class Tab2Page implements OnInit {
   }
 
   cardEventListener(modelItem) {
-    forkJoin(
-      this.service.getDetailList(this.modelType, modelItem.id),
-      this.service.getCreditList(this.modelType, modelItem.id),
-      this.service.getVideoList(this.modelType, modelItem.id)
-    ).subscribe((responseEl) => {
-      modelItem.detailResponseEl = responseEl[0];
-      modelItem.creditResponseEl = responseEl[1];
-      modelItem.videos = responseEl[2];
-      this.service.presentModal(modelItem, this.modelType);
-    });
+    if (!this.service.isLoading) {
+      this.service.isLoading = true;
+      forkJoin(
+        this.service.getDetailList(this.modelType, modelItem.id),
+        this.service.getCreditList(this.modelType, modelItem.id),
+        this.service.getVideoList(this.modelType, modelItem.id)
+      ).subscribe((responseEl) => {
+        modelItem.detailResponseEl = responseEl[0];
+        modelItem.creditResponseEl = responseEl[1];
+        modelItem.videos = responseEl[2];
+        this.service.presentModal(modelItem, this.modelType);
+      });
+    }
   }
 }

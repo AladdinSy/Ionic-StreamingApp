@@ -56,16 +56,19 @@ export class Tab3Page {
   }
 
   cardEventListener(modelItem) {
-    forkJoin(
-      this.service.getDetailList(this.selectedValue, modelItem.id),
-      this.service.getCreditList(this.selectedValue, modelItem.id),
-      this.service.getVideoList(this.selectedValue, modelItem.id)
-    ).subscribe((responseEl) => {
-      modelItem.detailResponseEl = responseEl[0];
-      modelItem.creditResponseEl = responseEl[1];
-      modelItem.videos = responseEl[2];
-      this.service.presentModal(modelItem, this.selectedValue);
-    });
+    if (!this.service.isLoading) {
+      this.service.isLoading = true;
+      forkJoin(
+        this.service.getDetailList(this.selectedValue, modelItem.id),
+        this.service.getCreditList(this.selectedValue, modelItem.id),
+        this.service.getVideoList(this.selectedValue, modelItem.id)
+      ).subscribe((responseEl) => {
+        modelItem.detailResponseEl = responseEl[0];
+        modelItem.creditResponseEl = responseEl[1];
+        modelItem.videos = responseEl[2];
+        this.service.presentModal(modelItem, this.selectedValue);
+      });
+    }
   }
 
   selectionChanged() {
@@ -78,5 +81,13 @@ export class Tab3Page {
     this.page = this.page + 1;
     this.loadingCurrentEventData = event;
     this.loadSearchContainer();
+  }
+
+  themeChange(event) {
+    if (event.detail.checked) {
+      document.body.setAttribute('color-theme', 'dark');
+    } else {
+      document.body.setAttribute('color-theme', 'light');
+    }
   }
 }

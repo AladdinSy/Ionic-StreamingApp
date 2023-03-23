@@ -15,7 +15,40 @@
   </ion-slide>
 </ion-slides> -->
 
-<swiper-container [slidesPerView]="slidePerView" loop="true" #swiper>
+<swiper-container
+  [pagination]="slidesPerView === 1 ? '' : true"
+  [effect]="slidesPerView === 1 ? 'flip' : 'slide'"
+  loop="true"
+  slidePerView="1"
+  spaceBetween="2"
+  [breakpoints]="{
+    '320': {
+      slidesPerView: 1,
+      spaceBetween: 2
+    },
+    '480': {
+      slidesPerView: 1.4,
+      spaceBetween: 2
+    },
+    '640': {
+      slidesPerView: 2,
+      spaceBetween: 1
+    },
+    '768': {
+      slidesPerView: 2.4,
+      spaceBetween: 1
+    },
+    '1024': {
+      slidesPerView: 3,
+      spaceBetween: 2
+    },
+    '1200': {
+      slidesPerView: 1,
+      spaceBetween: 1
+    }
+  }"
+  #swiper
+>
   <swiper-slide
     *ngFor="let item of sliderInputValue"
     (click)="sliderClickEventTrigger(item.modelItem)"

@@ -9,6 +9,8 @@ import { AlertController, IonRouterOutlet, Platform } from '@ionic/angular';
 })
 export class AppComponent {
   @ViewChild(IonRouterOutlet, { static: true }) routerOutlet: IonRouterOutlet;
+  alertPresented = false;
+
   constructor(
     private platform: Platform,
     public alertController: AlertController
@@ -23,9 +25,10 @@ export class AppComponent {
     // });
   }
 
-  backButtonEvent() {
+  async backButtonEvent() {
     this.platform.backButton.subscribeWithPriority(10, () => {
-      if (!this.routerOutlet.canGoBack()) {
+      if (!this.routerOutlet.canGoBack() && !this.alertPresented) {
+        this.alertPresented = true;
         this.backButtonAlert();
       }
     });
@@ -42,11 +45,13 @@ export class AppComponent {
           role: 'cancel',
           handler: () => {
             console.log('Application exit prevented!');
+            this.alertPresented = false;
           },
         },
         {
           text: 'Exit',
           handler: () => {
+            this.alertPresented = false;
             App.exitApp();
           },
         },

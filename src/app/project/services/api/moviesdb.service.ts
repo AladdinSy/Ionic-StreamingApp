@@ -11,6 +11,7 @@ const apiKey = environment.apiKey;
   providedIn: 'root',
 })
 export class MoviesDbService {
+  isLoading = false;
   currentModal = [];
   constructor(
     private http: HttpClient,
@@ -53,6 +54,9 @@ export class MoviesDbService {
   }
 
   async presentModal(modelItem, type) {
+    if (this.currentModal.length > 5) {
+      this.currentModal = [];
+    }
     const modal = await this.modalController.create({
       component: ModelPageComponent,
       componentProps: {
@@ -62,6 +66,7 @@ export class MoviesDbService {
     });
     this.currentModal.push(modal);
     await modal.present();
+    this.isLoading = false;
   }
 
   dismissModel() {
